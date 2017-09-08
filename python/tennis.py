@@ -9,6 +9,10 @@ class Player:
         self.name = name
         self.points = 0
 
+    def won(self, other_player):
+        return self.points >= 4 and other_player.points >= 0 and \
+            (self.points - other_player.points) >= 2
+
     def advantage_over(self, other_player):
         return self.points > other_player.points and other_player.points >= 3
 
@@ -83,16 +87,16 @@ class TennisGame:
                 P1res="Thirty"
             result = P1res + "-" + P2res
 
-
-        if (self.player_1.advantage_over(self.player_2)):
+        if self.player_1.advantage_over(self.player_2):
             result = "Advantage " + self.player_1.name
 
-        if (self.player_2.advantage_over(self.player_1)):
+        if self.player_2.advantage_over(self.player_1):
             result = "Advantage " + self.player_2.name
 
-        if (self.player_1.points>=4 and self.player_2.points>=0 and (self.player_1.points-self.player_2.points)>=2):
+        if self.player_1.won(self.player_2):
             result = "Win for " + self.player_1.name
-        if (self.player_2.points>=4 and self.player_1.points>=0 and (self.player_2.points-self.player_1.points)>=2):
+
+        if self.player_2.won(self.player_1):
             result = "Win for " + self.player_2.name
         return result
 
