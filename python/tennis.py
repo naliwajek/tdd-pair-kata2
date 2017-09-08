@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 
+# introduce player objecto
+# move translation to other class
 
 
 class Player:
     def __init__(self, name):
         self.name = name
         self.points = 0
+
+    def advantage_over(self, other_player):
+        return self.points > other_player.points and other_player.points >= 3
 
 
 class TennisGame:
@@ -78,10 +83,11 @@ class TennisGame:
                 P1res="Thirty"
             result = P1res + "-" + P2res
 
-        if (self.player_1.points > self.player_2.points and self.player_2.points >= 3):
+
+        if (self.player_1.advantage_over(self.player_2)):
             result = "Advantage " + self.player_1.name
 
-        if (self.player_2.points > self.player_1.points and self.player_1.points >= 3):
+        if (self.player_2.advantage_over(self.player_1)):
             result = "Advantage " + self.player_2.name
 
         if (self.player_1.points>=4 and self.player_2.points>=0 and (self.player_1.points-self.player_2.points)>=2):
