@@ -31,6 +31,22 @@ class TennisGame:
     def score(self):
 
         result = ""
+
+        if self.player_1.advantage_over(self.player_2):
+            result = "Advantage " + self.player_1.name
+
+        if self.player_2.advantage_over(self.player_1):
+            result = "Advantage " + self.player_2.name
+
+        if self.player_1.won(self.player_2):
+            result = "Win for " + self.player_1.name
+
+        if self.player_2.won(self.player_1):
+            result = "Win for " + self.player_2.name
+
+        if result != "":
+            return result
+
         if (self.player_1.points == self.player_2.points and self.player_1.points < 3):
             if (self.player_1.points==0):
                 result = "Love"
@@ -87,17 +103,6 @@ class TennisGame:
                 P1res="Thirty"
             result = P1res + "-" + P2res
 
-        if self.player_1.advantage_over(self.player_2):
-            result = "Advantage " + self.player_1.name
-
-        if self.player_2.advantage_over(self.player_1):
-            result = "Advantage " + self.player_2.name
-
-        if self.player_1.won(self.player_2):
-            result = "Win for " + self.player_1.name
-
-        if self.player_2.won(self.player_1):
-            result = "Win for " + self.player_2.name
         return result
 
     def SetP1Score(self, number):
