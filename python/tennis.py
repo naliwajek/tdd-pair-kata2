@@ -66,4 +66,3 @@ class TennisGame:
         return self.translator.translate(
             self.player_1.points,
             self.player_2.points)
-
