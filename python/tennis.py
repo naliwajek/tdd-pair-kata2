@@ -21,14 +21,6 @@ class Translator:
     def __init__(self):
         pass
 
-    def score_to_word(self, score):
-        return {
-            0: "Love",
-            1: "Fifteen",
-            2: "Thirty",
-            3: "Forty"
-        }[score]
-
     def translate(self, score_1, score_2):
         if score_1 == score_2 and score_1 < 3:
             return self.score_to_word(score_1) + "-All"
@@ -36,6 +28,14 @@ class Translator:
             return "Deuce"
 
         return self.score_to_word(score_1) + "-" + self.score_to_word(score_2)
+
+    def score_to_word(self, score):
+        return {
+            0: "Love",
+            1: "Fifteen",
+            2: "Thirty",
+            3: "Forty"
+        }[score]
 
 
 class TennisGame:
