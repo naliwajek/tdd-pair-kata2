@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# introduce player objecto
-# move translation to other class
-
 
 class Player:
     def __init__(self, name):
@@ -63,7 +60,9 @@ class TennisGame:
         if self.player_2.advantage_over(self.player_1):
             return "Advantage " + self.player_2.name
 
-        return self.translator.translate(self.player_1.points, self.player_2.points)
+        return self.translator.translate(
+            self.player_1.points,
+            self.player_2.points)
 
     def P1Score(self):
         self.player_1.points += 1
