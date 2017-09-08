@@ -94,23 +94,17 @@ class TennisGame:
             self.P2Score()
 
     def score(self):
-
-        result = ""
-
-        if self.player_1.advantage_over(self.player_2):
-            result = "Advantage " + self.player_1.name
-
-        if self.player_2.advantage_over(self.player_1):
-            result = "Advantage " + self.player_2.name
-
         if self.player_1.won(self.player_2):
-            result = "Win for " + self.player_1.name
+            return "Win for " + self.player_1.name
 
         if self.player_2.won(self.player_1):
-            result = "Win for " + self.player_2.name
+            return "Win for " + self.player_2.name
 
-        if result != "":
-            return result
+        if self.player_1.advantage_over(self.player_2):
+            return "Advantage " + self.player_1.name
+
+        if self.player_2.advantage_over(self.player_1):
+            return "Advantage " + self.player_2.name
 
         return self.translator.translate(self.player_1.points, self.player_2.points)
 
