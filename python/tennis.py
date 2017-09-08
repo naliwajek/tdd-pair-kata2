@@ -6,6 +6,9 @@ class Player:
         self.name = name
         self.points = 0
 
+    def win_point(self):
+        self.points += 1
+
     def won(self, other_player):
         return self.points >= 4 and other_player.points >= 0 and \
             (self.points - other_player.points) >= 2
@@ -43,9 +46,9 @@ class TennisGame:
 
     def won_point(self, player_name):
         if player_name == self.player_1.name:
-            self.player_1.points += 1
+            self.player_1.win_point()
         else:
-            self.player_2.points += 1
+            self.player_2.win_point()
 
     def score(self):
         if self.player_1.won(self.player_2):
