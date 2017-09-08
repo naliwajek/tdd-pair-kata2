@@ -114,12 +114,6 @@ class TennisGame:
 
         return self.translator.translate(self.player_1.points, self.player_2.points)
 
-    def SetP1Score(self, number):
-        self.player_1.points = number
-
-    def SetP2Score(self, number):
-        self.player_2.points = number
-
     def P1Score(self):
         self.player_1.points += 1
 
