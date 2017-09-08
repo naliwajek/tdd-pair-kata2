@@ -30,34 +30,12 @@ class Translator:
         }[score]
 
     def translate(self, score_1, score_2):
-        result = ""
         if score_1 == score_2 and score_1 < 3:
-            result += self.score_to_word(score_1) + "-All"
+            return self.score_to_word(score_1) + "-All"
         if score_1 == score_2 and score_1 > 2:
-            result = "Deuce"
+            return "Deuce"
 
-        result_1 = ""
-        result_2 = ""
-
-        if (score_1 > 0 and score_2==0):
-            result_1 = self.score_to_word(score_1)
-            result_2 = "Love"
-            result = result_1 + "-" + result_2
-        if (score_2 > 0 and score_1==0):
-            result_2 = self.score_to_word(score_2)
-            result_1 = "Love"
-            result = result_1 + "-" + result_2
-
-        if (score_1>score_2 and score_1 < 4):
-            result_1 = self.score_to_word(score_1)
-            result_2 = self.score_to_word(score_2)
-            result = result_1 + "-" + result_2
-        if (score_2>score_1 and score_2 < 4):
-            result_1 = self.score_to_word(score_1)
-            result_2 = self.score_to_word(score_2)
-            result = result_1 + "-" + result_2
-
-        return result
+        return self.score_to_word(score_1) + "-" + self.score_to_word(score_2)
 
 
 class TennisGame:
