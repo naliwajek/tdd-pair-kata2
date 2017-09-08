@@ -16,11 +16,76 @@ class Player:
     def advantage_over(self, other_player):
         return self.points > other_player.points and other_player.points >= 3
 
+class Translator:
+    def __init__(self):
+        pass
+
+    def translate(self, score_1, score_2):
+        result = ""
+        if (score_1 == score_2 and score_1 < 3):
+            if (score_1==0):
+                result = "Love"
+            if (score_1==1):
+                result = "Fifteen"
+            if (score_1==2):
+                result = "Thirty"
+            result += "-All"
+        if (score_1==score_2 and score_1>2):
+            result = "Deuce"
+
+        P1res = ""
+        P2res = ""
+        if (score_1 > 0 and score_2==0):
+            if (score_1==1):
+                P1res = "Fifteen"
+            if (score_1==2):
+                P1res = "Thirty"
+            if (score_1==3):
+                P1res = "Forty"
+
+            P2res = "Love"
+            result = P1res + "-" + P2res
+        if (score_2 > 0 and score_1==0):
+            if (score_2==1):
+                P2res = "Fifteen"
+            if (score_2==2):
+                P2res = "Thirty"
+            if (score_2==3):
+                P2res = "Forty"
+
+            P1res = "Love"
+            result = P1res + "-" + P2res
+
+
+        if (score_1>score_2 and score_1 < 4):
+            if (score_1==2):
+                P1res="Thirty"
+            if (score_1==3):
+                P1res="Forty"
+            if (score_2==1):
+                P2res="Fifteen"
+            if (score_2==2):
+                P2res="Thirty"
+            result = P1res + "-" + P2res
+        if (score_2>score_1 and score_2 < 4):
+            if (score_2==2):
+                P2res="Thirty"
+            if (score_2==3):
+                P2res="Forty"
+            if (score_1==1):
+                P1res="Fifteen"
+            if (score_1==2):
+                P1res="Thirty"
+            result = P1res + "-" + P2res
+
+        return result
+
 
 class TennisGame:
     def __init__(self, player_1_name, player_2_name):
         self.player_1 = Player(player_1_name)
         self.player_2 = Player(player_2_name)
+        self.translator = Translator()
 
     def won_point(self, player_name):
         if player_name == self.player_1.name:
@@ -47,63 +112,7 @@ class TennisGame:
         if result != "":
             return result
 
-        if (self.player_1.points == self.player_2.points and self.player_1.points < 3):
-            if (self.player_1.points==0):
-                result = "Love"
-            if (self.player_1.points==1):
-                result = "Fifteen"
-            if (self.player_1.points==2):
-                result = "Thirty"
-            result += "-All"
-        if (self.player_1.points==self.player_2.points and self.player_1.points>2):
-            result = "Deuce"
-
-        P1res = ""
-        P2res = ""
-        if (self.player_1.points > 0 and self.player_2.points==0):
-            if (self.player_1.points==1):
-                P1res = "Fifteen"
-            if (self.player_1.points==2):
-                P1res = "Thirty"
-            if (self.player_1.points==3):
-                P1res = "Forty"
-
-            P2res = "Love"
-            result = P1res + "-" + P2res
-        if (self.player_2.points > 0 and self.player_1.points==0):
-            if (self.player_2.points==1):
-                P2res = "Fifteen"
-            if (self.player_2.points==2):
-                P2res = "Thirty"
-            if (self.player_2.points==3):
-                P2res = "Forty"
-
-            P1res = "Love"
-            result = P1res + "-" + P2res
-
-
-        if (self.player_1.points>self.player_2.points and self.player_1.points < 4):
-            if (self.player_1.points==2):
-                P1res="Thirty"
-            if (self.player_1.points==3):
-                P1res="Forty"
-            if (self.player_2.points==1):
-                P2res="Fifteen"
-            if (self.player_2.points==2):
-                P2res="Thirty"
-            result = P1res + "-" + P2res
-        if (self.player_2.points>self.player_1.points and self.player_2.points < 4):
-            if (self.player_2.points==2):
-                P2res="Thirty"
-            if (self.player_2.points==3):
-                P2res="Forty"
-            if (self.player_1.points==1):
-                P1res="Fifteen"
-            if (self.player_1.points==2):
-                P1res="Thirty"
-            result = P1res + "-" + P2res
-
-        return result
+        return self.translator.translate(self.player_1.points, self.player_2.points)
 
     def SetP1Score(self, number):
         self.player_1.points = number
