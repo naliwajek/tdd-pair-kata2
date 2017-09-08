@@ -16,67 +16,46 @@ class Player:
     def advantage_over(self, other_player):
         return self.points > other_player.points and other_player.points >= 3
 
+
 class Translator:
     def __init__(self):
         pass
 
+    def score_to_word(self, score):
+        return {
+            0: "Love",
+            1: "Fifteen",
+            2: "Thirty",
+            3: "Forty"
+        }[score]
+
     def translate(self, score_1, score_2):
         result = ""
-        if (score_1 == score_2 and score_1 < 3):
-            if (score_1==0):
-                result = "Love"
-            if (score_1==1):
-                result = "Fifteen"
-            if (score_1==2):
-                result = "Thirty"
-            result += "-All"
-        if (score_1==score_2 and score_1>2):
+        if score_1 == score_2 and score_1 < 3:
+            result += self.score_to_word(score_1) + "-All"
+        if score_1 == score_2 and score_1 > 2:
             result = "Deuce"
 
-        P1res = ""
-        P2res = ""
+        result_1 = ""
+        result_2 = ""
+
         if (score_1 > 0 and score_2==0):
-            if (score_1==1):
-                P1res = "Fifteen"
-            if (score_1==2):
-                P1res = "Thirty"
-            if (score_1==3):
-                P1res = "Forty"
-
-            P2res = "Love"
-            result = P1res + "-" + P2res
+            result_1 = self.score_to_word(score_1)
+            result_2 = "Love"
+            result = result_1 + "-" + result_2
         if (score_2 > 0 and score_1==0):
-            if (score_2==1):
-                P2res = "Fifteen"
-            if (score_2==2):
-                P2res = "Thirty"
-            if (score_2==3):
-                P2res = "Forty"
-
-            P1res = "Love"
-            result = P1res + "-" + P2res
-
+            result_2 = self.score_to_word(score_2)
+            result_1 = "Love"
+            result = result_1 + "-" + result_2
 
         if (score_1>score_2 and score_1 < 4):
-            if (score_1==2):
-                P1res="Thirty"
-            if (score_1==3):
-                P1res="Forty"
-            if (score_2==1):
-                P2res="Fifteen"
-            if (score_2==2):
-                P2res="Thirty"
-            result = P1res + "-" + P2res
+            result_1 = self.score_to_word(score_1)
+            result_2 = self.score_to_word(score_2)
+            result = result_1 + "-" + result_2
         if (score_2>score_1 and score_2 < 4):
-            if (score_2==2):
-                P2res="Thirty"
-            if (score_2==3):
-                P2res="Forty"
-            if (score_1==1):
-                P1res="Fifteen"
-            if (score_1==2):
-                P1res="Thirty"
-            result = P1res + "-" + P2res
+            result_1 = self.score_to_word(score_1)
+            result_2 = self.score_to_word(score_2)
+            result = result_1 + "-" + result_2
 
         return result
 
