@@ -84,12 +84,10 @@ class TennisGame:
         return result
 
     def SetP1Score(self, number):
-        for i in range(number):
-            self.P1Score()
+        self.p1points = number
 
     def SetP2Score(self, number):
-        for i in range(number):
-            self.P2Score()
+        self.p2points = number
 
     def P1Score(self):
         self.p1points +=1
